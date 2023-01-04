@@ -1,24 +1,25 @@
-package com.example.testgui;
+package com.match;
+
+import com.match.game.model.Person;
+import com.match.game.model.Tuple;
 
 import java.util.List;
 
 public class Matcher{
 
-    private int w1 = 25;
-    private int w2 = 25;
-    private int w3 = 50;
+    private List<Integer> weights;
 
-    public Matcher(int w1, int w2, int w3) {
-        this.w1 = w1;
-        this.w2 = w2;
-        this.w3 = w3;
+    public Matcher(List<Integer> weights) {
+        this.weights = weights;
     }
 
     private double findDistance(Person p1, Person p2){
-        return Math.sqrt(
-                (w1*(p1.getAttribute1() - p2.getAttribute1()) * w1*(p1.getAttribute1() - p2.getAttribute1()))
-                + (w2*(p1.getAttribute2() - p2.getAttribute2()) * w2*(p1.getAttribute2() - p2.getAttribute2()))
-                + (w3*(p1.getAttribute3() - p2.getAttribute3()) * w3*(p1.getAttribute3() - p2.getAttribute3())));
+        int bigVal = 0;
+        for (int i = 0; i < p1.getAttributesValues().size(); i ++){
+            bigVal += (weights.get(i)*(p1.getAttributesValues().get(i) - p2.getAttributesValues().get(i)) *
+                      (p1.getAttributesValues().get(i) - p2.getAttributesValues().get(i)));
+        }
+        return Math.sqrt(bigVal);
     }
 
     private Tuple<Person, Person> findCompatibleWithFirst(List<Person> lp){

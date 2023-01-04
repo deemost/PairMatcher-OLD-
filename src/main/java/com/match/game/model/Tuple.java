@@ -1,4 +1,4 @@
-package com.example.testgui;
+package com.match.game.model;
 
 public class Tuple<T, S> {
     private T first;
@@ -31,8 +31,8 @@ public class Tuple<T, S> {
     @Override
     public String toString() {
         return "Tuple{" +
-                "first=" + first + '\n' +
-                ", second=" + second + '\n' +
+                "first: " + first + '\n' +
+                ", second: " + second + '\n' +
                 ", distance= " + distance +
                 '}' + '\n' + '\n';
     }
